@@ -87,7 +87,7 @@ body {
     padding: 0 50px;
   }
   header .header-content .header-content-inner {
-    max-width: 1000px;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -102,11 +102,10 @@ body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   #ball {
        width: 0px;
        height: 0px;
-       background-image: url('../img/momo_small.png');
        -webkit-background-size: cover;
        -moz-background-size: cover;
        background-size: cover;
@@ -121,13 +120,15 @@ body {
   }
 
   header {
-    min-height: 100%;
-    background-position: middle;
+    background-position: center center;
     background-image: url('../img/background_mobile.png');
+    background-size: contain;
+    background-repeat: no-repeat;
 
-    position: relative;
+    position: relative
+
     max-width: 100%;
-    height: auto;
+    min-height: 100%;
     width: auto;
   }
   header .header-content {
@@ -137,7 +138,7 @@ body {
     width: 100%;
   }
   header .header-content .header-content-inner h1 {
-    font-size: 12vw;
+    font-size: 10vh;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 0;
