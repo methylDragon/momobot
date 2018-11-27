@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+		 <meta property="og:url" content="http://momobot.ai" />
+		 <meta property="og:title" content="MOMOBot - Something's Coming!" />
+		 <meta property="og:description" content="I am MOMObot! 桃ボット! Nice to meet you!" />
+		 <meta property="og:image" content="http://momobot.ai/img/momo_small.png" />
+		 <meta property="og:type" content="Portfolio"/>
+		 <meta property="og:site_name" content="MOMObot.ai"/>
+
+		 <meta charset="utf-8">
+		 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		 <meta name="viewport" content="width=device-width, initial-scale=1">
+		 <meta name="description" content="I am MOMObot! 桃ボット! Nice to meet you!">
+		 <meta name="author" content="methylDragon">
+		 <meta name="keywords" content="Robot, MOMObot, MOMO, ROS, AGV, SUTD, SOAR, Cute, Engineering">
+		 <base target="_blank">
+		 <title>MOMOBot - Something's Coming!</title>
+
+		 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		 <link href="css/momobot.css" rel="stylesheet">
+
+		 <!-- Custom Fonts -->
+		 <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		 <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans" rel="stylesheet">
+
+		 <!-- Favicons -->
+		 <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+		 <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
+		 <link rel="icon" type="image/png" href="favicons/favicon-194x194.png" sizes="194x194">
+		 <link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192">
+		 <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+		 <link rel="manifest" href="favicons/manifest.json">
+		 <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+		 <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body onload = "followMouse();">
+	    <header>
+	        <div class="header-content">
+	            <div class="header-content-inner">
+								<h1 class="strokeme" id="">Something's </br> Coming!</h1>
+	            </div>
+	        </div>
+	    </header>
+
+     <div class="wrap">
+          <div id="ball"></div>
+     </div>
+
+     <script type="text/javascript">
+			 var $ = document.querySelector.bind(document);
+			 var $on = document.addEventListener.bind(document);
+
+			 var xmouse, ymouse;
+			 $on('mousemove', function (e) {
+			 		 xmouse = e.clientX || e.pageX;
+			 		 ymouse = e.clientY || e.pageY;
+			 });
+
+			 var ball = $('#ball');
+			 var x = void 0,
+			 		 y = void 0,
+			 		 dx = void 0,
+			 		 dy = void 0,
+			 		 tx = 0,
+			 		 ty = 0,
+			 		 key = -1;
+
+			 var followMouse = function followMouse() {
+			 		 key = requestAnimationFrame(followMouse);
+
+			 		 if(!x || !y) {
+			 					x = window.innerWidth * 0.5;
+			 					y = window.innerHeight * 0.1;
+			 		 } else {
+			 					dx = (xmouse - x) * 0.1;
+			 					dy = (ymouse - y) * 0.1;
+			 					if(Math.abs(dx) + Math.abs(dy) < 0.1) {
+			 							 x = xmouse;
+			 							 y = ymouse;
+			 					} else {
+			 							 x += dx;
+			 							 y += dy;
+			 					}
+			 		 }
+
+			 		 ball.style.left = x + 'px';
+			 		 ball.style.top = y + 'px';
+			 };
+     </script>
+
+</body>
+
+</html>

@@ -1,4 +1,2 @@
-*.swp
-*.swap
-*.save
-*.bak
+node_modules
+bower_components
