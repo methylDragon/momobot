@@ -1,5 +1,6 @@
 <launch>
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+      	<remap from="scan" to="scan_filtered" />
         <rosparam file="$(find momobot)/param/navigation/costmap_common_params.yaml" command="load" ns="global_costmap" />
         <rosparam file="$(find momobot)/param/navigation/costmap_common_params.yaml" command="load" ns="local_costmap" />
         <rosparam file="$(find momobot)/param/navigation/local_costmap_params.yaml" command="load" />

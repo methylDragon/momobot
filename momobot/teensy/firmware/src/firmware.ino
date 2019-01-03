@@ -161,7 +161,7 @@ void commandCallback(const geometry_msgs::Twist& cmd_msg)
     //this callback function receives cmd_msg object where linear and angular speed are stored
     g_req_linear_vel_x = cmd_msg.linear.x;
     g_req_linear_vel_y = cmd_msg.linear.y;
-    g_req_angular_vel_z = cmd_msg.angular.z;
+    g_req_angular_vel_z = -cmd_msg.angular.z;
 
     g_prev_command_time = millis();
 }
@@ -176,8 +176,6 @@ void moveBase()
     int current_rpm2 = motor2_encoder.getRPM();
     int current_rpm3 = motor3_encoder.getRPM();
     int current_rpm4 = motor4_encoder.getRPM();
-
-    current_rpm1 = current_rpm2;
 
     if (abs(current_rpm1) > 600) {
       current_rpm1 = 0;

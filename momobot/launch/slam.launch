@@ -1,10 +1,11 @@
 <launch>
     <!-- Mapping package -->
     <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+      	<remap from="scan" to="scan_filtered" />
         <param name="base_frame" value="/base_footprint" />
         <param name="odom_frame" value="/odom" />
         <param name="map_update_interval" value="15.0"/>
-        <param name="maxUrange" value="5.0"/>
+        <param name="maxUrange" value="30.0"/>
         <param name="minRange" value="-0.5"/>
         <param name="sigma" value="0.05"/>
         <param name="kernelSize" value="1"/>

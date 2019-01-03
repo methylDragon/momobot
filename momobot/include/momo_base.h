@@ -11,7 +11,6 @@ public:
     MomoBase();
     void velCallback(const lino_msgs::Velocities& vel);
 
-
 private:
     ros::NodeHandle nh_;
     ros::Publisher odom_publisher_;

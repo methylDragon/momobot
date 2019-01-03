@@ -5,11 +5,12 @@
         <param name="kld_err" value="0.05"/>
         <param name="kld_z" value="0.99"/>
         <param name="laser_lambda_short" value="0.1"/>
-        <param name="laser_likelihood_max_dist" value="2.0"/>
+        <param name="laser_likelihood_max_dist" value="15.0"/>
         <param name="laser_max_beams" value="60"/>	
         <param name="laser_model_type" value="likelihood_field"/>
         <param name="laser_sigma_hit" value="0.2"/>
         <param name="laser_z_hit" value="0.5"/>
+        <param name="laser_max_range" value="40.0" />
         <param name="laser_z_short" value="0.05"/>
         <param name="laser_z_max" value="0.05"/>
         <param name="laser_z_rand" value="0.5"/>

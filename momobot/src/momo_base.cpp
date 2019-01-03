@@ -1,7 +1,7 @@
 #include <ros/ros.h>
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_broadcaster.h>
-#include "momo_base.h"
+#include <momo_base.h>
 
 MomoBase::MomoBase():
     linear_velocity_x_(0),
@@ -77,7 +77,7 @@ void MomoBase::velCallback(const lino_msgs::Velocities& vel)
     odom.twist.twist.angular.x = 0.0;
     odom.twist.twist.angular.y = 0.0;
     //angular speed from encoders
-    odom.twist.twist.angular.z = angular_velocity_z_;
+    odom.twist.twist.angular.z = -angular_velocity_z_;
     odom.twist.covariance[0] = 0.0001;
     odom.twist.covariance[7] = 0.0001;
     odom.twist.covariance[35] = 0.0001;
