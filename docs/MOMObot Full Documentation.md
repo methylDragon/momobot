@@ -441,7 +441,7 @@ After these commands are ran the following features on Momobot are enabled:
         4. Set laserscan to /scan_unfiltered to turn it off
 
 4. Run the Navigation stack
-    - `roslaunch navigate.launch`
+    - `roslaunch momobot navigate.launch`
 
 
 ![](https://i.imgur.com/eSnwuAu.png)
