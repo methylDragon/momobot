@@ -501,7 +501,7 @@ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {frame_i
     - Get bounding points from the map by running navigate.launch. The coordinates for various points on the map can be read easily
     - You can then define their names, which will be the strings published to `/location` when the robot is localised within those map zones
     - You can also define the corresponding MP3s to play!
-- To check MOMObot's current location: `rostopic $echo location`
+- To check MOMObot's current location: `rostopic echo location`
 
 ### Tuning Navigation Parameters
 - `roscd momobot` to cd into the momobot stack
