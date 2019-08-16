@@ -1,0 +1,4 @@
+[submodule "Porcupine"]
+	path = src/momo_porcupine/src/Porcupine
+	url = https://github.com/Picovoice/Porcupine.git
+
