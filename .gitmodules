@@ -22,7 +22,3 @@
 [submodule "src/lino_udev"]
 	path = src/lino_udev
 	url = https://github.com/linorobot/lino_udev.git
-
-[submodule "src/momo_porcupine/src/Porcupine"]
-	path = src/momo_porcupine/src/Porcupine
-	url = https://github.com/Picovoice/Porcupine.git
