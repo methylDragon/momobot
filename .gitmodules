@@ -2,3 +2,6 @@
 	path = src/momo_porcupine/src/Porcupine
 	url = https://github.com/Picovoice/Porcupine.git
 
+[submodule "src/LMS1xx"]
+	path = src/LMS1xx
+	url = https://github.com/methylDragon/LMS1xx.git
