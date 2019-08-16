@@ -11,9 +11,15 @@ This documentation has been put together with the combined efforts of members of
 - Low En
 - [Senrli](https://github.com/senrli)
 
+
+
 ## Introduction
 
 MOMObot is a service AGV built for extensibility and to roam autonomously using ROS!
+
+
+
+## Table Of Contents
 
 ## Hardware
 
@@ -55,7 +61,8 @@ Motors that slide in from the side allow for ease of maintenance
 
 Bottom layer braced with L shaped extrusions to stop battery from moving too much, as well as to provide a sturdier frame.
 
-Momo as 4 seperate layers:
+**Momo as 4 seperate layers:**
+
 1. Motor and Battery
 1.5. Lidar
 2. Electronics - driver, relays, mcu, esc, all else
@@ -96,6 +103,7 @@ Take note:
 3. Implement Rear LiDAR
 4. Implement system to improve ease of removing back panel (i.e. magnets, hooks), current back panel is screwed on by 6x rhombus nuts.
 5. Implement a charging port for both 55Ah Batteries and 7Ah Batteries
+
 
 
 ## Electronics
@@ -244,48 +252,67 @@ Room for impovement
 Use the [Linorobot PID tuning guide](https://github.com/linorobot/linorobot/wiki/2.-Base-Controller
 )!
 
+
+
 ## Software
 
-Using Linorobot stack as it simplifies the tuning 
+MOMObot is using a modified [Linorobot]([https://linorobot.org](https://linorobot.org/)) stack! 
 
-Linorobot to Momobot stack changes:
-1. changed Linorobot to Momobot names in code
-2. changed motor driver code
+**Linorobot to Momobot stack changes:**
+
+1. Changed Linorobot to Momobot names in code
+2. Changed motor driver code
+3. Retargeted several packages
+
+
 
 ### Pre-Requisites
+
 - ROS Proficiency
 - Intermediate Linux/Ubuntu Command Line Proficiency
 - Linorobot experience
     - https://linorobot.org
 
-### Setting Up
 
-#### Logging into MOMOBOT
-1. Login to momobot, using the SUTD_LAB WiFi
- `ssh <USERNAME>@10.21.132.80` 
- or 
- `ssh momobot`
 
-    - Note, this only works if you've configured an SSH Alias for momobot!
+### Setting Up MOMObot
+
+#### **Logging into MOMObot**
+
+These settings are for our internal use only. You might have to change it around to whatever WiFi network credentials and addresses your own implementation of the MOMObot stack will use.
+
+1. Login to MOMObot, we use the `SUTD_LAB` WiFi network, with these credentials
+ 
+```shell
+ssh <USERNAME>@10.21.132.80 
+
+    # Or
+    ssh momobot
+    ```
+    
+    Note, this only works if you've configured an SSH Alias for MOMObot!
+
     - Put inside `~/.ssh/config`
     - Make the file if it doesn't exist using `sudo touch ~/.ssh/config` or `sudo nano ~/.ssh/config`
     
         Contents:
-
+    
       ```shell
       Host momobot
-      	# SUTD_LAB
-          Port 22
-          User <USERNAME>
-          HostName 10.21.132.80
-      ```
-
+  	# SUTD_LAB
+       Port 22
+       User <USERNAME>
+       HostName 10.21.132.80
+   ```
+ 
 2. Access the teensy config file
     - `roscd momobot/teensy/firmware/lib/config`
     - Opening this file will expose the PID values for tuning
 
 
-#### Setting Static IP for New Robots
+
+#### **Setting Static IP for New Robots**
+
 A static IP is needed so as to be able to ssh into the robot 
 
 1. Setup static IP
@@ -310,7 +337,9 @@ Set IPV4, set manual, set static address, Netmask and Gateway, according to `rou
 
 To work with SUTD wifi for internet, use DNS Server: `192.168.2.100`
 
-#### Install ROS and Other Packages if needed
+
+
+#### **Install ROS and Other Packages if needed**
 
 1. Run the install scripts from setup_scripts
     - Credits: https://github.com/methyldragon/quick-install-scripts
@@ -322,11 +351,16 @@ To work with SUTD wifi for internet, use DNS Server: `192.168.2.100`
 
 3. Then, copy paste the scripts in the `src` directory inside a ROS workspace, preferably called `momobot_ws`
 
-#### Setup the ~/.bashrc on MOMOBot as well as your Computer
+
+
+#### **Setup the ~/.bashrc on MOMOBot as well as your Computer**
+
 > Otherwise you won't be able to get any ROS data!!!
 
 
-### **On MOMObot**
+
+#### **On MOMObot**
+
 1. `sudo nano ~/.bashrc`
 2. Append this
     - PLEASE REMEMBER TO CHANGE THE THINGS IN <>
@@ -348,11 +382,10 @@ To work with SUTD wifi for internet, use DNS Server: `192.168.2.100`
         export ROS_IP=<IP ADDRESS OF ROBOT>
         export ROS_HOSTNAME=<IP ADDRESS OF ROBOT>
         ```
-    ```
-    
-    ```
 
-### **On Computer**
+
+
+#### **On Computer**
 
 1. `sudo nano ~/.bashrc`
 2. Append this
@@ -364,19 +397,18 @@ To work with SUTD wifi for internet, use DNS Server: `192.168.2.100`
         export ROS_IP=$ip
         export ROS_HOSTNAME=$ip
         ```
-    ```
-    
-    ```
 
 
 
+### Running MOMObot Capabilities
 
-
-## Running MOMObot Capabilities
 This section assumes knowledge of ROS and basic Linorobot packages.
 This is because MOMObot is based heavily on the Linorobot stack.
 
-### Startup Process
+
+
+#### **Startup and Bringup Process**
+
 1. Ensure that all electronics are connected and turned on
     - Ensure that the electronics battery has sufficient charge or the LIDAR will fail to function
     - Check to ensure that the LIDAR ethernet cable is connected properly or LIDAR data will not be parsed to the MOMObot stack
@@ -396,20 +428,31 @@ This is because MOMObot is based heavily on the Linorobot stack.
     `rosrun teleop_twist_keyboard teleop_twist_keyboard`
     - This will enable tele-operation functionality on MOMObot (follow the screen fo instructions)
     
-### Checking MOMO Functionality
+
+
+
+#### **Checking MOMO Functionality**
+
+This of course requires that you have MOMObot brought up already.
+
 1. **COMPUTER**: open rviz:
     - `roscd linorobot/rviz/`
     - `rviz -d odometry.rviz`
     - Under the topic tab on the left menu, it is possible to change the topic between `/odom` and `/raw_odom`.
     - It is also possible to add an additional topic and then set the keep to a larger number (e.g 10000) so as to allow for easier visualization
-### Debugging
+
+
+
+#### **ROS Graph Debugging Refresher**
+
 If visualization of all ROS nodes is required for debugging purposes, run 
      `rosrun rqt_graph rqt_graph`
      - This will bringup the rqt graph that visualizes all ROS relations and nodes, allowing for easy debugging.
 
 ![](https://i.imgur.com/6priv7s.png)
 
-#### ROS nodes as seen in RQT Graph
+(ROS nodes as seen in RQT Graph)
+
 - `/scan`: laser data
 - `/laser_filter`: custom node for filtering laser data
 - `/rosserial_lino`: adapter for connecting to teensy
@@ -426,39 +469,109 @@ After these commands are ran the following features on Momobot are enabled:
 4. Odometry testing
 
 
-#### Tuning of EKF
+
+#### **Running the Navigation stack**
+
+Just like the Linorobot!
+
+- Run this command: `roslaunch momobot navigate.launch`
+
+![](https://i.imgur.com/eSnwuAu.png)
+
+`AMCL` is the localisation node that corrects sensor drift using the laser and scanmap
+`map_server` publishes the map
+
+Autonomous localization and Navigation capabilities enabled and we can tell MOMObot to move by using Rviz or by the using command line:
+
+1. Publishing directly to topics
+
+   - Publish goal messages to these topics to get MOMObot to navigate to the coordinate:
+     `/move_base/goal`
+     `/move_base_simple/goal`
+
+2. Or you can use RViz which is the easiest
+
+   - Just use the RViz interface!
+
+     ```shell
+     roscd momobot/rviz
+     rviz -d navigate.rviz
+     ```
+
+     You might have to change some frame IDs and subscribed topics around, but it should work!
+
+   - Get your data by subscribing to those topics above using `rostopic echo <TOPIC_NAME>`
+
+
+
+### Tuning MOMObot
+
+#### **Changing The Map**
+
+If you happen to have a new map that you want MOMObot to use, simply add the map and its corresponding .yaml to the `momobot/maps` directory.
+
+Then, point the `map_server` node to the proper map by editing the `navigate.launch` file!
+
+```shell
+roscd momobot/launch
+nano navigate.launch
+```
+
+You'll want to replace this line, changing the  map_file argument!
+
+```xml
+<arg name="map_file" default="$(find momobot)/maps/<YOUR_MAP_NAME_HERE>.yaml"/>
+```
+
+
+
+#### **EKF Tuning**
+
 ##### Method
 1. Mark out a square of 3m x 3m using tape
+
 2. Using tele-operation, drive the robot in a square
+
 3. on **Computer** in the same terminal
     - `roscd/linorobot/rviz/`
     - `rviz -d odometry.rviz`
     - This can be used to view the distance the robot has think it has travelled
     - In Rviz
         1. Click on Odometry in the left topic pane (it is possible to select /odom and /raw_odom)
-        2. It is recommended to add another topic and indicator for /raw_odom separately to visualize it easily
+        2. It is recommended to add another topic and indicator for /raw_odom separately to visualize it alongside the filtered odometry
         3. Change the shaft length, radius and etc as necessary (set the color to 0, 255, 0 to ensure that the arrows are distinguishable from /odom arrows)
-        4. Set laserscan to /scan_unfiltered to turn it off
+    
+4. Now you can edit the `robot_localization.yaml` EKF parameters!
 
-4. Run the Navigation stack
-    - `roslaunch momobot navigate.launch`
-
-
-![](https://i.imgur.com/eSnwuAu.png)
-
-`AMCL` is the navigator
-`map_server` publishes the map
-
-Autonomous localization and Navigation capabilities enabled and we can tell Momo to move by Rviz or by the command line:
-1. Publishing to topics
-     - publish to topics:
-    `/move_base/goal`
-    `/move_base_simple/goal`
-2. RViz which is the easiest
-    - Get your data by subscribing to those topics above using `rostopic echo <TOPIC_NAME>`
+    ```shell
+    roscd momobot/param/ekf
+    nano robot_localization.yaml
+    ```
 
 
-### Commands
+
+#### **Tuning Navigation Parameters**
+
+- `roscd momobot` to cd into the momobot stack
+- `roscd momobot/param/` change these files for navigation parameters
+
+
+
+#### **Tuning Localization Parameters**
+
+- `roscd momobot/launch/include`, then `nano amcl.launch`
+  - Parameters of interest:
+    - laser_max_range
+    - min_particles
+    - max_particles
+    - odom_alpha1 (Rotation noise from rotation)
+    - odom_alpha2 (Rotation noise from translation)
+    - odom_alpha3 (Translation noise from translation)
+    - odom_alpha4 (Translation noise from rotation)
+
+
+
+### **Console Commands**
 
 Note: Each command is in each individual terminal, opened INSIDE MOMOBOT (i.e. in a terminal that is SSHed into MOMOBOT)
 
@@ -479,19 +592,30 @@ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {frame_i
 
 **Note:** important to clear costmaps frequently as there will be phantom obstacles created the longer MOMO is in operation.
 
-### To use SLAM
+
+
+### Mapping
+
 - `roslaunch momobot slam.launch` on **COMPUTER**
 - `rosrun map_server map_saver` to save the map in the current directory. This saves your map files into .yaml files and .pgm files. .pgm can be editted in photoshop, etc like a .png file.
 - if you need to change the map name, do it in the .yaml file.
 **Setting your maps**
 - under `roscd momobot`,, name the map properly as the .yaml files will be used to load map files here.
 
-## Export Display to MOMObot from Computer
+
+
+### Exporting Display to MOMObot from Computer
+
 - `export DISPLAY:0` enables you to run commands on other computer instead of your computer. Ensure that you are on the right terminal **MOMOBOT**
 - `rosrun momo_emotions cmd_vel_face_tracking.py` to run face cmd_vel tracking script on **MOMObot** from the **Computer Terminal**
 - This allows the script to be started during events or situations where it may be difficult to access the on-board computer 
 
-### Semantic Pose Package
+
+
+### Semantic Pose and Semantic Pose Sounder Packages
+
+> The `semantic_pose` package allows the robot to map robot coordinates to named locations. You can use this alongside `semantic_pose_sounder` to **let MOMObot play voice lines upon entering a particular named location!**
+
 - Must be on **MOMOBOT** `roslaunch semantic_pose_sounder semantic_pose_sound.launch`
 - This loads all the ros parameters required.
 - Edit them in the associated `config.yaml` in the package (Check it out with `roscd semantic_pose_sounder`)
@@ -503,22 +627,10 @@ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {frame_i
     - You can also define the corresponding MP3s to play!
 - To check MOMObot's current location: `rostopic echo location`
 
-### Tuning Navigation Parameters
-- `roscd momobot` to cd into the momobot stack
-- `roscd momobot/param/` change these files for navigation parameters
 
-### Tuning Localization Parameters
-- `roscd momobot/launch/include`, then `nano amcl.launch`
-    - Parameters of interest:
-        - laser_max_range
-        - min_particles
-        - max_particles
-        - odom_alpha1 (Rotation noise from rotation)
-        - odom_alpha2 (Rotation noise from translation)
-        - odom_alpha3 (Translation noise from translation)
-        - odom_alpha4 (Translation noise from rotation)
 
 ### Software To-Dos
+
 - Laser scan matcher
 - Visual odometry
 - 3D depth camera integration
