@@ -1,7 +1,27 @@
-[submodule "Porcupine"]
-	path = src/momo_porcupine/src/Porcupine
-	url = https://github.com/Picovoice/Porcupine.git
-
 [submodule "src/LMS1xx"]
 	path = src/LMS1xx
 	url = https://github.com/methylDragon/LMS1xx.git
+
+[submodule "src/imu_calib"]
+	path = src/imu_calib
+	url = https://github.com/linorobot/imu_calib.git
+
+[submodule "src/laser_filters"]
+	path = src/laser_filters
+	url = https://github.com/ros-perception/laser_filters.git
+
+[submodule "src/lino_msgs"]
+	path = src/lino_msgs
+	url = https://github.com/linorobot/lino_msgs.git
+
+[submodule "src/lino_pid"]
+	path = src/lino_pid
+	url = https://github.com/linorobot/lino_pid.git
+
+[submodule "src/lino_udev"]
+	path = src/lino_udev
+	url = https://github.com/linorobot/lino_udev.git
+
+[submodule "src/momo_porcupine/src/Porcupine"]
+	path = src/momo_porcupine/src/Porcupine
+	url = https://github.com/Picovoice/Porcupine.git
