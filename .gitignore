@@ -2,6 +2,7 @@
 *.swap
 *.save
 *.bak
+*.no_toc
 
 credentials/
 build/
