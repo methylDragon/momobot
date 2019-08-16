@@ -29,6 +29,18 @@ Based off of the [Linorobot](https://linorobot.org) framework!
 
 
 
+### Setup
+
+This repo contains an entire momobot workspace!
+
+You can put the workspace anywhere else you want, but just make sure you actually build it after the fact.
+
+```shell
+git clone https://github.com/methylDragon/momobot.git
+```
+
+
+
 
 
 ![cute](./assets/cute.png)
