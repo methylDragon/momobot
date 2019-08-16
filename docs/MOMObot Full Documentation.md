@@ -19,11 +19,37 @@ MOMObot is a service AGV built for extensibility and to roam autonomously using 
 
 
 
-## Table Of Contents
+## Table Of Contents <a name="top"></a>
 
-## Hardware
+1. [Hardware](#1)    
+   1.1 [Dimensions](#1.1)    
+   1.2 [Specifications](#1.2)    
+   1.3 [Gotchas, Hacky Stuff and Things to Take Note Of](#1.3)    
+   1.4 [To Dos](#1.4)    
+2. [Electronics](#2)    
+   2.1 [Electronic BOM](#2.1)    
+   2.2 [Start-Up, Shut-Down Procedure](#2.2)    
+   2.3 [Gotchas, Hacky Stuff and Things to Take Note Of](#2.3)    
+   2.4 [Circuit Diagrams](#2.4)    
+   2.5 [Motor Tuning](#2.5)    
+   2.6 [PID Tuning from the MOMObot side](#2.6)    
+3. [Software](#3)    
+   3.1 [Pre-Requisites](#3.1)    
+   3.2 [Setting Up MOMObot](#3.2)    
+   3.3 [Running MOMObot Capabilities](#3.3)    
+   3.4 [Tuning MOMObot](#3.4)    
+   3.5 [Console Commands](#3.5)    
+   3.6 [Mapping](#3.6)    
+   3.7 [Exporting Display to MOMObot from Computer](#3.7)    
+   3.8 [Semantic Pose and Semantic Pose Sounder Packages](#3.8)    
+   3.9 [Software To-Dos](#3.9)    
 
-### Dimensions
+
+## 1. Hardware <a name="1"></a>
+
+### 1.1 Dimensions <a name="1.1"></a>
+[go to top](#top)
+
 
 - 52x52x80 cm (just frame)
 - 52x52x84 cm (including wheels)
@@ -32,7 +58,9 @@ Dimensions decided based on the requirements that MOMO has to fit inside lifts, 
 
 The ratio of 52 cm : 80 cm of the frame is to improve the aesthetics of the MOMO, by observing the golden ratio.
 
-### Specifications
+### 1.2 Specifications <a name="1.2"></a>
+[go to top](#top)
+
 Side panels are tapered on one end to allow for a 270 degree field-of-view to ensure unobstructed LIDAR operation. Components on the bottom are shifted to the rear in addition to tapered side panels to allow for unobstructed view for the LIDAR.
 
 MOMO uses rear wheel drive to ensure maximum stability when driving forward. Front wheel drive systems are inherently unstable due to fluttering of the castor wheel - undesirable oscillations during autonomous navigation (this was shown empirically as the original design was a front wheel drive).
@@ -83,7 +111,9 @@ Low CG - able to stabilize quicky after tilting
 CG weight
 Rear wheel drive - all weight on rear wheel, when accelerate does wheelie, so weight was shifted forward
 
-### Gotchas, Hacky Stuff and Things to Take Note Of
+### 1.3 Gotchas, Hacky Stuff and Things to Take Note Of <a name="1.3"></a>
+[go to top](#top)
+
 
 Take note:
 - Screws to motor -able to come out with vibrations
@@ -97,7 +127,9 @@ Take note:
 - Arm to mount screen forced upwards to fit the screen inside. This however, locks the screen in place.
 - Castor wheel mountings - Castor wheel mountings too big for screw.
 - Screw to giant washer to washer to attach the caster wheels at the bottom. 
-### To Dos
+### 1.4 To Dos <a name="1.4"></a>
+[go to top](#top)
+
 1. Redo Lidar Mount - side holder tolerance w
 2. Implement a guard for the front LiDAR
 3. Implement Rear LiDAR
@@ -106,13 +138,15 @@ Take note:
 
 
 
-## Electronics
+## 2. Electronics <a name="2"></a>
 
 
 Powers the controlling system, including the lidar, VESC, Teensy, laptop , router as well as two solid state relays
 Two solid state relays were used
 
-### Electronic BOM
+### 2.1 Electronic BOM <a name="2.1"></a>
+[go to top](#top)
+
 
 #### Power Source
 - 2x 12V 55Ah Pb acid batteries (Connected in Series)
@@ -157,7 +191,9 @@ Two solid state relays were used
 -    Laptop power adapter
 
 
-### Start-Up, Shut-Down Procedure
+### 2.2 Start-Up, Shut-Down Procedure <a name="2.2"></a>
+[go to top](#top)
+
 
 #### Start-Up (FULL)
 1. Check the battery leads and ensure that the batteries are connected in series 
@@ -184,7 +220,9 @@ This assumes the batteries have been connected beforehand
 3. Disconnect the battery leads
 
 
-### Gotchas, Hacky Stuff and Things to Take Note Of
+### 2.3 Gotchas, Hacky Stuff and Things to Take Note Of <a name="2.3"></a>
+[go to top](#top)
+
 - 2x16AWG wires used to take high current out of battery, as we did not have thick enough wires at the time. The wire usage was not consistent, as some were salvaged PVC wires from the previous bot. Suggested to use all silicone coated wires with low gauge for higher termperature endurance and lower resistance.
 
 - Encoder and PWM input wires from Teensy to the VESC was connected using jumper cables rather than specific JST-PH connectors. Encoder wires were spliced to 2, one to VESC, one to teensy, causing a mess of wires and potential intermittent connections.
@@ -197,7 +235,9 @@ This assumes the batteries have been connected beforehand
 
 - The lack of a charging circuit made the life of the maintenance team difficult. Much more troubles of disconnecting the batteries for recharging and connecting back for operation
 
-### Circuit Diagrams
+### 2.4 Circuit Diagrams <a name="2.4"></a>
+[go to top](#top)
+
 * The robot consists of two power systems
 * 24V with smaller battery capacity and 24V with bigger battery capacity
 * Both 2 cells in series to boost the voltage for the motors, as well as the lidar
@@ -207,7 +247,9 @@ This assumes the batteries have been connected beforehand
 ![](https://i.imgur.com/biKbPmZ.png)
 ![](https://i.imgur.com/jlg5EWP.png)
 
-### Motor Tuning
+### 2.5 Motor Tuning <a name="2.5"></a>
+[go to top](#top)
+
 **VESC tuning**
 
 Follow link for VESC tuning documentation
@@ -238,7 +280,9 @@ Room for impovement
 -FOC profile can be improved (FOC settings , will have lots of variables to tune to fit the curve better)
 -positive, negative ramping time
 
-### PID Tuning from the MOMObot side
+### 2.6 PID Tuning from the MOMObot side <a name="2.6"></a>
+[go to top](#top)
+
 
 **Edit the config file**
 1. `roscd momobot/teensy/firmware/lib/config/` 
@@ -254,7 +298,7 @@ Use the [Linorobot PID tuning guide](https://github.com/linorobot/linorobot/wiki
 
 
 
-## Software
+## 3. Software <a name="3"></a>
 
 MOMObot is using a modified [Linorobot]([https://linorobot.org](https://linorobot.org/)) stack! 
 
@@ -266,7 +310,9 @@ MOMObot is using a modified [Linorobot]([https://linorobot.org](https://linorobo
 
 
 
-### Pre-Requisites
+### 3.1 Pre-Requisites <a name="3.1"></a>
+[go to top](#top)
+
 
 - ROS Proficiency
 - Intermediate Linux/Ubuntu Command Line Proficiency
@@ -275,36 +321,35 @@ MOMObot is using a modified [Linorobot]([https://linorobot.org](https://linorobo
 
 
 
-### Setting Up MOMObot
+### 3.2 Setting Up MOMObot <a name="3.2"></a>
+[go to top](#top)
+
 
 #### **Logging into MOMObot**
 
 These settings are for our internal use only. You might have to change it around to whatever WiFi network credentials and addresses your own implementation of the MOMObot stack will use.
 
 1. Login to MOMObot, we use the `SUTD_LAB` WiFi network, with these credentials
- 
-```shell
-ssh <USERNAME>@10.21.132.80 
 
-    # Or
-    ssh momobot
-    ```
-    
-    Note, this only works if you've configured an SSH Alias for MOMObot!
-
-    - Put inside `~/.ssh/config`
-    - Make the file if it doesn't exist using `sudo touch ~/.ssh/config` or `sudo nano ~/.ssh/config`
-    
-        Contents:
-    
-      ```shell
-      Host momobot
-  	# SUTD_LAB
-       Port 22
-       User <USERNAME>
-       HostName 10.21.132.80
    ```
- 
+   ssh <USERNAME>@10.21.132.80 
+   
+   # Or
+   ssh momobot
+   ```
+
+   Note, this only works if you've configured an SSH Alias for MOMObot!
+
+   - To do so, put this inside `~/.ssh/config` (Make the file if it doesn't exist using `sudo touch ~/.ssh/config` or `sudo nano ~/.ssh/config`)
+
+     ```
+       Host momobot
+          # SUTD_LAB
+          Port 22
+          User <USERNAME>
+          HostName 10.21.132.80
+     ```
+
 2. Access the teensy config file
     - `roscd momobot/teensy/firmware/lib/config`
     - Opening this file will expose the PID values for tuning
@@ -400,7 +445,9 @@ To work with SUTD wifi for internet, use DNS Server: `192.168.2.100`
 
 
 
-### Running MOMObot Capabilities
+### 3.3 Running MOMObot Capabilities <a name="3.3"></a>
+[go to top](#top)
+
 
 This section assumes knowledge of ROS and basic Linorobot packages.
 This is because MOMObot is based heavily on the Linorobot stack.
@@ -504,7 +551,9 @@ Autonomous localization and Navigation capabilities enabled and we can tell MOMO
 
 
 
-### Tuning MOMObot
+### 3.4 Tuning MOMObot <a name="3.4"></a>
+[go to top](#top)
+
 
 #### **Changing The Map**
 
@@ -571,7 +620,9 @@ You'll want to replace this line, changing the  map_file argument!
 
 
 
-### **Console Commands**
+### 3.5 Console Commands <a name="3.5"></a>
+[go to top](#top)
+
 
 Note: Each command is in each individual terminal, opened INSIDE MOMOBOT (i.e. in a terminal that is SSHed into MOMOBOT)
 
@@ -594,7 +645,9 @@ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {frame_i
 
 
 
-### Mapping
+### 3.6 Mapping <a name="3.6"></a>
+[go to top](#top)
+
 
 - `roslaunch momobot slam.launch` on **COMPUTER**
 - `rosrun map_server map_saver` to save the map in the current directory. This saves your map files into .yaml files and .pgm files. .pgm can be editted in photoshop, etc like a .png file.
@@ -604,7 +657,9 @@ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {frame_i
 
 
 
-### Exporting Display to MOMObot from Computer
+### 3.7 Exporting Display to MOMObot from Computer <a name="3.7"></a>
+[go to top](#top)
+
 
 - `export DISPLAY:0` enables you to run commands on other computer instead of your computer. Ensure that you are on the right terminal **MOMOBOT**
 - `rosrun momo_emotions cmd_vel_face_tracking.py` to run face cmd_vel tracking script on **MOMObot** from the **Computer Terminal**
@@ -612,7 +667,9 @@ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {frame_i
 
 
 
-### Semantic Pose and Semantic Pose Sounder Packages
+### 3.8 Semantic Pose and Semantic Pose Sounder Packages <a name="3.8"></a>
+[go to top](#top)
+
 
 > The `semantic_pose` package allows the robot to map robot coordinates to named locations. You can use this alongside `semantic_pose_sounder` to **let MOMObot play voice lines upon entering a particular named location!**
 
@@ -629,7 +686,9 @@ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {frame_i
 
 
 
-### Software To-Dos
+### 3.9 Software To-Dos <a name="3.9"></a>
+[go to top](#top)
+
 
 - Laser scan matcher
 - Visual odometry
