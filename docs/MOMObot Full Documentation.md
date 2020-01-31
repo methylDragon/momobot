@@ -3,7 +3,7 @@
 ## Credits
 This documentation has been put together with the combined efforts of members of the **SUTD Organisation of Autonomous Robotics**
 
-### 2018 - 2019
+### V1.0: 2018 - 2019
 
 - [methylDragon](https://github.com/methylDragon)
 - [Shine16](https://github.com/shine16)
@@ -13,7 +13,7 @@ This documentation has been put together with the combined efforts of members of
 - Low En
 - [Senrli](https://github.com/senrli)
 
-### 2019 - 2020
+### V1.1: 2019 - 2020
 
 - [Photon](https://github.com/1487quantum)
 - [robobdo](https://github.com/robobdo)
@@ -101,10 +101,12 @@ Take note:
 - Castor wheel mountings - Castor wheel mountings too big for screw.
 - Screw to giant washer to washer to attach the caster wheels at the bottom. 
 ### To Dos
-1. Redo Lidar Mount - side holder tolerance w
-2. Implement a guard for the front LiDAR
+~~1. Redo Lidar Mount - side holder tolerance w~~
+
+~~2. Implement a guard for the front LiDAR~~
+
 3. Implement Rear LiDAR
-4. Implement system to improve ease of removing back panel (i.e. magnets, hooks), current back panel is screwed on by 6x rhombus nuts.
+4. Implement system to improve ease of removing back panel (i.e. magnets, hooks), current back panel is screwed on by 6x rhombus nuts. [In-progress]
 5. Implement a charging port for both 55Ah Batteries and 7Ah Batteries
 
 
@@ -265,10 +267,17 @@ Linorobot to Momobot stack changes:
 ### Pre-Requisites
 - ROS Proficiency
 - Intermediate Linux/Ubuntu Command Line Proficiency
+- Python3 & C++ [Good to have]
 - Linorobot experience
     - https://linorobot.org
 
 ### Setting Up
+
+#### pygame
+Ensure that pygame is installed before running *momo_emotions*.
+```shell
+$ sudo apt-get install python-pygame
+```
 
 #### Logging into MOMOBOT
 1. Login to momobot, using the SUTD_LAB WiFi
