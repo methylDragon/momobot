@@ -264,6 +264,10 @@ Linorobot to Momobot stack changes:
 1. changed Linorobot to Momobot names in code
 2. changed motor driver code
 
+## Overview
+- ROS Melodic Morenia
+- Ubuntu 18.04.3 LTS (Bionic Beaver)
+
 ### Pre-Requisites
 - ROS Proficiency
 - Intermediate Linux/Ubuntu Command Line Proficiency
@@ -346,12 +350,27 @@ To work with SUTD wifi for internet, use DNS Server: `192.168.2.100`
 
 
 ### **On MOMObot**
-1. `sudo nano ~/.bashrc`
-2. Append this
-    - PLEASE REMEMBER TO CHANGE THE THINGS IN <>
-      Remember to save also!
-        ```shell
-        source /opt/ros/kinetic/setup.bash
+1. Open up the your prefered shell config in a text editor
+
+**Bash (Default)**
+
+```
+$ sudo nano ~/.bashrc
+```
+**zsh**
+```
+$ sudo nano ~/.zshrc
+```
+
+2. Append the following in the shell configuration file:
+> **PLEASE REMEMBER TO CHANGE THE THINGS IN <> & Remember to save also!**
+
+**Bash (Default)**
+       
+```shell
+        ...
+        
+        source /opt/ros/melodic/setup.bash
         source ~/catkin_ws/devel/setup.bash
       
         source /home/<USERNAME>/<ROS_WORKSPACE_NAME>/devel/setup.bash
@@ -366,30 +385,54 @@ To work with SUTD wifi for internet, use DNS Server: `192.168.2.100`
       
         export ROS_IP=<IP ADDRESS OF ROBOT>
         export ROS_HOSTNAME=<IP ADDRESS OF ROBOT>
-        ```
-    ```
-    
-    ```
+        
+```
+        
+**zsh**
+
+```shell
+        ...
+        
+        source /opt/ros/melodic/setup.zsh
+        source ~/catkin_ws/devel/setup.zsh
+      
+        source /home/<USERNAME>/<ROS_WORKSPACE_NAME>/devel/setup.zsh
+      
+        source ~/<ROS_WORKSPACE_NAME>/devel/setup.zsh
+        export LINOLIDAR=lms111
+        export LINOBASE=2wd
+      
+        export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<USERNAME>/<ROS_WORKSPACE_NAME>/src
+      
+        alias costmap_reset="rosservice call /move_base/clear_costmaps"
+      
+        export ROS_IP=<IP ADDRESS OF ROBOT>
+        export ROS_HOSTNAME=<IP ADDRESS OF ROBOT>
+```
 
 ### **On Computer**
 
-1. `sudo nano ~/.bashrc`
+1. Open up the your prefered shell config in a text editor
+
+**Bash (Default)**
+
+```
+$ sudo nano ~/.bashrc
+```
+**zsh**
+```
+$ sudo nano ~/.zshrc
+```
+
 2. Append this
     - PLEASE REMEMBER TO CHANGE THE THINGS IN <>
-        ```shell
+```shell
         ip=$(ip addr show wlo1 | grep -o 'inet [0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+' | grep -o [0-9].*)
         
         export ROS_MASTER_URI=http://<ROBOT_IP_ADDRESS>:11311
         export ROS_IP=$ip
         export ROS_HOSTNAME=$ip
-        ```
-    ```
-    
-    ```
-
-
-
-
+```
 
 ## Running MOMObot Capabilities
 This section assumes knowledge of ROS and basic Linorobot packages.
