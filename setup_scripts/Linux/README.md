@@ -1,5 +1,6 @@
 # Linux Install Scripts
 
+## Automatic Installation
 Source: <http://github.com/methyldragon/quick-install-scripts>
 
 Once you download these, ensure you enable the executable permissions for them with:
@@ -14,3 +15,5 @@ And then run them with
 $ ./name_of_file
 ```
 
+## Manual Installation
+[Coming soon]
