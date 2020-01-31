@@ -1,7 +1,9 @@
 # MOdular MObile (MOMObot) Robot Documentation
-
+> Version 1.1
 ## Credits
 This documentation has been put together with the combined efforts of members of the **SUTD Organisation of Autonomous Robotics**
+
+### 2018 - 2019
 
 - [methylDragon](https://github.com/methylDragon)
 - [Shine16](https://github.com/shine16)
@@ -10,6 +12,14 @@ This documentation has been put together with the combined efforts of members of
 - Bryan Kong
 - Low En
 - [Senrli](https://github.com/senrli)
+
+### 2019 - 2020
+
+- [Photon](https://github.com/1487quantum)
+- [robobdo](https://github.com/robobdo)
+- Jia Hwee
+- Jerremy
+- [darthnoward](https://github.com/darthnoward)
 
 ## Introduction
 
