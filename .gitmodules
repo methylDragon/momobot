@@ -1,0 +1,24 @@
+[submodule "src/LMS1xx"]
+	path = momobot_ws/src/LMS1xx
+	url = https://github.com/methylDragon/LMS1xx.git
+        branch = methyl-patch
+
+[submodule "src/imu_calib"]
+	path = momobot_ws/src/imu_calib
+	url = https://github.com/linorobot/imu_calib.git
+
+[submodule "src/laser_filters"]
+	path = momobot_ws/src/laser_filters
+	url = https://github.com/ros-perception/laser_filters.git
+
+[submodule "src/lino_msgs"]
+	path = momobot_ws/src/lino_msgs
+	url = https://github.com/linorobot/lino_msgs.git
+
+[submodule "src/lino_pid"]
+	path = momobot_ws/src/lino_pid
+	url = https://github.com/linorobot/lino_pid.git
+
+[submodule "src/lino_udev"]
+	path = momobot_ws/src/lino_udev
+	url = https://github.com/linorobot/lino_udev.git

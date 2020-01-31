@@ -1,0 +1,39 @@
+## Semantic Pose Setup ##
+
+base_frame_id: "base_footprint"
+map_frame_id: "map"
+
+publish_rate: 1
+
+## Semantic Pose Sounder Setup ##
+
+playback_delay: 1 # Minimum seconds to wait between playbacks
+
+## Location Zone Setup ## (Default topic is /location)
+
+places:
+  - name: "mrt"
+    boundary: [[-42.3269309998, -9.64726257324], [-27.2339553833, -0.137819603086], [-19.3856124878, -18.0246276855]]
+
+  - name: "crooked_cooks"
+    boundary: [[-25.6212444305, 24.2674217224], [-38.3735313416, 5.47848701477], [-28.5244960785, 1.72261142731], [-16.6392326355, 20.9231834412]]
+
+  - name: "gom_gom"
+    boundary: [[8.68024921417, -8.78165817261], [9.07768154144, -13.543961525], [23.7762451172, -12.3618183136], [24.1685733795, -9.0656337738]]
+
+  - name: "lt_1"
+    boundary: [[-6.95016288757, -48.0339584351], [-7.33593225479, -85.0364532471], [12.3969259262, -85.5298843384], [13.1223640442, -47.8884277344]]
+
+  - name: "mont_calzone"
+    boundary: [[14.925494194, -30.8228912354], [14.6924104691, -40.3478050232], [38.6967544556, -43.9386787415], [39.4649734497, -33.204410553]]
+
+  - name: "library"
+    boundary: [[55.0568695068, -32.930606842], [56.4948539734, -56.3395729065], [82.8936004639, -47.6475486755]]
+
+  - name: "campus_centre"
+    boundary: [[50.3807373047, -12.2976636887], [69.9550628662, 21.7182559967], [123.884155273, 1.96545815468], [86.3303527832, -37.6790657043]]
+
+
+## Link Sounds to Zones ##
+
+trigger_mappings: {"mrt": "mrt.mp3", "crooked_cooks": "crooked_cooks.mp3", "gom_gom": "gom_gom.mp3", "lt_1": "lt_1.mp3", "mont_calzone": "mont_calzone.mp3", "library": "library.mp3", "campus_centre": "campus_centre.mp3"}

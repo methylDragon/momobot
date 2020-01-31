@@ -1,0 +1,11 @@
+<launch>
+    <rosparam command="load" file="$(find semantic_pose_sounder)/config/config.yaml" />
+
+    <node pkg="semantic_pose" type="semantic_pose_node" name="semantic_pose" output="screen" >
+        <!-- <remap from="location" to="REMAPPED_LOCATION_TOPIC_NAME" /> -->
+    </node>
+
+    <node pkg="semantic_pose_sounder" type="semantic_pose_sounder" name="semantic_pose_sounder" output="screen" >
+        <!-- <remap from="location" to="REMAPPED_LOCATION_TOPIC_NAME" /> -->
+    </node>
+</launch>

@@ -1,0 +1,149 @@
+echo "
+                           .     .
+                        .  |\-^-/|  .    
+                       /| } O.=.O { |\ 
+                      /´ \ \_ ~ _/ / \`\ 
+                    /´ |  \-/ ~ \-/  | \`\ 
+                    |   |  /\\\\ //\  |   | 
+                     \|\|\/-\"\"-\"\"-\/|/|/
+                             ______/ /
+                             '------'
+                _   _        _  ___                         
+      _ __  ___| |_| |_ _  _| ||   \ _ _ __ _ __ _ ___ _ _  
+     | '  \/ -_)  _| ' \ || | || |) | '_/ _\` / _\` / _ \ ' \ 
+     |_|_|_\___|\__|_||_\_, |_||___/|_| \__,_\__, \___/_||_|
+                        |__/                 |___/          
+     -------------------------------------------------------
+                     github.com/methylDragon
+
+[CONVENIENCE TOOLS INSTALL SCRIPT]
+
+INSTALLS
+--------
+- Git
+- Terminator (Super efficient terminal emulator)
+- methylT3RM1N4T0R Profile
+- Nano (Lightweight command line editor!)
+- Gedit (Everyone loves notepad!)
+- net-tools and nmap
+"
+
+read -p "Press [enter] to continue"
+
+# Reset timer
+SECONDS=0
+
+# Install apt deps
+
+echo -e "\n== UPDATING SOURCE LIST =="
+echo -e "\nThis will take awhile..."
+
+sudo apt-get update > /dev/null
+sudo apt-get install software-properties-common -y
+echo -e "\nDone!"
+
+
+
+# Install git
+echo -e "\n== INSTALLING GIT =="
+sudo apt-get install git -y > /dev/null
+echo "Git installed!"
+
+# Get Terminator Repo
+
+echo -e "\n== ACCESSING T3RM1N4T0R REPOSITORY =="
+sudo add-apt-repository ppa:gnome-terminator -y
+echo -e "\nBe patient..."
+sudo apt-get update > /dev/null
+echo -e "\nDone!"
+
+# Install Terminator
+
+echo -e "\n== INSTALLING T3RM1N4T0R =="
+sudo apt-get install terminator wget -y > /dev/null
+
+echo "Terminator installed! Configuring now..."
+
+
+# Download and Install Terminator config file
+
+mkdir -p ~/.config/terminator
+cd ~/.config/terminator
+sudo wget -q https://raw.githubusercontent.com/methylDragon/fun-stuff/master/Terminator%20Settings/terminator/config -O config
+
+cd - > /dev/null
+
+
+# Get Nano (My favourite terminal editor)
+
+echo -e "\n== Installing Nano =="
+sudo apt-get install nano -y > /dev/null
+echo "Done!"
+
+# Get Gedit (Everyone loves notepad!)
+
+echo -e "\n== Installing Gedit =="
+sudo apt-get install gedit -y > /dev/null
+echo "Done!"
+
+# Get Gedit (Everyone loves notepad!)
+
+echo -e "\n== Installing net-tools and nmap =="
+echo "Time to be H4CK3RM4N"
+sudo apt-get install net-tools nmap -y > /dev/null
+echo "Done!"
+
+# Cowsay and Fortune!!
+
+echo -e "\nHatching easter eggs...\n"
+
+sudo apt-get -qq install cowsay fortune -y
+
+cd /usr/share/cowsay/cows
+sudo wget -q https://raw.githubusercontent.com/methylDragon/fun-stuff/master/cowsay/methylDragon/methyldragon.cow -O methyldragon.cow
+sudo wget -q https://raw.githubusercontent.com/methylDragon/fun-stuff/master/cowsay/methylDragon/methylhalf.cow -O methylhalf.cow
+
+cd - > /dev/null
+
+
+# Append to ~/.bashrc if not already in
+
+declare -a file_appends=(
+  'alias methyl="fortune | cowsay -f methyldragon"'
+  'alias methylhalf="fortune | cowthink -f methylhalf"'
+)
+
+target_file="$HOME/.bashrc"
+
+for i in "${file_appends[@]}" ; do
+  if ! grep -Fxq "$i" "$target_file" ; then
+    echo "$i" >> "$target_file"
+  else
+    :
+  fi
+done
+
+
+# CH3EERS!
+
+cowsay -f methylhalf "We're done here!
+CH3EERS! Call me again any time with methyl or methylhalf!"
+
+
+# Print time elapsed
+if (( $SECONDS > 3600 )) ; then
+    let "hours=SECONDS/3600"
+    let "minutes=(SECONDS%3600)/60"
+    let "seconds=(SECONDS%3600)%60"
+    echo -e "\n\nCompleted in $hours hour(s), $minutes minute(s) and $seconds second(s)" 
+elif (( $SECONDS > 60 )) ; then
+    let "minutes=(SECONDS%3600)/60"
+    let "seconds=(SECONDS%3600)%60"
+    echo -e "\n\nCompleted in $minutes minute(s) and $seconds second(s)"
+else
+    echo -e "\n\nCompleted in $SECONDS seconds"
+fi
+
+# Restart bash to source ~/.bashrc
+
+exec bash
