@@ -283,6 +283,32 @@ Ensure that pygame is installed before running *momo_emotions*.
 $ sudo apt-get install python-pygame
 ```
 
+#### kivy
+Add the kivy ppa, and then update the repo list:
+```
+$ sudo add-apt-repository ppa:kivy-team/kivy
+$ sudo apt update
+```
+After that, install kivy:
+```
+$ sudo apt-get install python3-kivy
+```
+
+If there are issues running programs that utillises the kivy lib as shown below:
+```
+[INFO   ] [Window      ] Provider: sdl2(['window_egl_rpi'] ignored)
+dbus[24434]: arguments to dbus_message_new_method_call() were incorrect, assertion "path != NULL" failed in file ../../../dbus/dbus-message.c line 1362.
+This is normally a bug in some application using the D-Bus library.
+
+  D-Bus not built with -rdynamic so unable to print a backtrace
+Aborted (core dumped)
+```
+Add _DBUS_FATAL_WARNINGS=0_ before the program name: ([Reference](https://bugs.launchpad.net/ubuntu/+source/libsdl2/+bug/1775067))
+```
+DBUS_FATAL_WARNINGS=0 {python_script}
+```
+Replace _python_script_ with the program name.
+
 #### ROS Pacakages
 Ensure that the relevant ROS pacakages are installed:
 - [Robot Localization](https://github.com/cra-ros-pkg/robot_localization): `$ sudo apt install ros-melodic-robot-localization`
