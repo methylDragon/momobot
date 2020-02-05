@@ -283,6 +283,31 @@ Ensure that pygame is installed before running *momo_emotions*.
 $ sudo apt-get install python-pygame
 ```
 
+#### ROS Pacakages
+Ensure that the relevant ROS pacakages are installed:
+- [Robot Localization](https://github.com/cra-ros-pkg/robot_localization): `$ sudo apt install ros-melodic-robot-localization`
+- [Ros Serial Python](http://wiki.ros.org/rosserial): `$ sudo apt install ros-melodic-rosserial-python`
+- [imu_filter_madgwick](http://wiki.ros.org/imu_filter_madgwick): `$ sudo apt install ros-melodic-imu-filter-madgwick`
+
+#### Teensy Binding
+Bind the teensy to a symbolic link (custom name) via udev (So instead of _/dev/ttyACM0_, it would be _/dev/momobase_). Double check the attributes of the device via 
+```
+$ udevadm info -a -p  $(udevadm info -q path -n /dev/ttyACM0)
+```
+Replace _/dev/ttyACM0_ to the device name of the Teensy. [Teensy could be identified via `ATTRS{manufacturer}=="Teensyduino"` in the list] 
+
+**Note down the values of `ATTRS{idVendor}` and `ATTRS{idProduct}`.**
+
+After that, open up _/etc/udev/rules.d/99-nv-l4t-usb-device-mode.rules_ with a text editor.
+> **Note:** Double check the files in the _/etc/udev/rules.d/_ directory, the device rule file may differ for different devices/computer.
+```
+$ sudo nano /etc/udev/99-nv-l4t-usb-device-mode.rules 
+```
+Add the following line:
+```
+ACTION=="add", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="0483", SYMLINK+="momobase"
+```
+
 #### Logging into MOMOBOT
 1. Login to momobot, using the SUTD_LAB WiFi
  `ssh <USERNAME>@10.21.132.80` 
