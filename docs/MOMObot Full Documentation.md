@@ -293,6 +293,36 @@ After that, install kivy:
 ```
 $ sudo apt-get install python3-kivy
 ```
+**Troubleshooting**
+
+**SDL Issue**
+
+```
+[CRITICAL] [Window      ] Unable to find any valuable Window provider. Please enable debug logging (e.g. add -d if running from the command line, or change the log level in the config) and re-run your app to identify potential causes
+egl_rpi - ImportError: cannot import name 'bcm'
+  File "/usr/lib/python3/dist-packages/kivy/core/__init__.py", line 63, in core_select_lib
+    fromlist=[modulename], level=0)
+  File "/usr/lib/python3/dist-packages/kivy/core/window/window_egl_rpi.py", line 12, in <module>
+    from kivy.lib.vidcore_lite import bcm, egl
+
+sdl2 - ImportError: libSDL2_image-2.0.so.0: cannot open shared object file: No such file or directory
+  File "/usr/lib/python3/dist-packages/kivy/core/__init__.py", line 63, in core_select_lib
+    fromlist=[modulename], level=0)
+  File "/usr/lib/python3/dist-packages/kivy/core/window/window_sdl2.py", line 27, in <module>
+    from kivy.core.window._window_sdl2 import _WindowSDL2Storage
+
+x11 - ModuleNotFoundError: No module named 'kivy.core.window.window_x11'
+  File "/usr/lib/python3/dist-packages/kivy/core/__init__.py", line 63, in core_select_lib
+    fromlist=[modulename], level=0)
+
+[CRITICAL] [App         ] Unable to get a Window, abort.
+```
+The following issue is caused by a missing sdl2 library, could be resolved by installing the python3-sdl2 package:
+```
+$ sudo apt install python3-sdl2 
+```
+
+**D-Bus Issue (Jetson TX2)**
 
 If there are issues running programs that utillises the kivy lib as shown below:
 ```
