@@ -2,5 +2,10 @@
 *.swap
 *.save
 *.bak
+*.no_toc
 
 credentials/
+build/
+devel/
+.catkin_tools/
+logs/
