@@ -1,6 +1,7 @@
 site_name: MOMOBot
 nav:
     - Overview: index.md
+    - Components:
         - Hardware: hardware.md
         - Electronics: electronics.md
         - Software: software.md
