@@ -83,7 +83,7 @@ DBUS_FATAL_WARNINGS=0 {python_script}
 ```
 Replace _python_script_ with the program name.
 
-#### ROS Pacakages
+#### ROS Packages
 Ensure that the relevant ROS pacakages are installed:
 - [Robot Localization](https://github.com/cra-ros-pkg/robot_localization): `$ sudo apt install ros-melodic-robot-localization`
 - [Ros Serial Python](http://wiki.ros.org/rosserial): `$ sudo apt install ros-melodic-rosserial-python`
