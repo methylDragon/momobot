@@ -24,6 +24,7 @@ Based off of the [Linorobot](https://linorobot.org) framework!
 - We prefer to use [catkin tools](<https://catkin-tools.readthedocs.io/en/latest/installing.html>) as well!
 
 ## Setup
+> View the full documentation [here](https://momobot.readthedocs.io/)!
 
 This repo contains an entire momobot workspace!
 
