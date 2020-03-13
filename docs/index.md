@@ -1,4 +1,6 @@
 # MOdular MObile (MOMObot) Robot Documentation
+[![Documentation Status](https://readthedocs.org/projects/momobot/badge/?version=latest)](https://momobot.readthedocs.io/en/latest/?badge=latest)
+
 > Version 1.1
 ## Credits
 This documentation has been put together with the combined efforts of members of the **SUTD Organisation of Autonomous Robotics**
