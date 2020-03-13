@@ -1,8 +1,12 @@
 site_name: MOMOBot
 nav:
-    - Home: index.md
-    - Circuit Diagram Draw.io Links: cd_links.md
-    - Flipsky VESC 4.12 Documentation: vesc_doc.md
+    - Overview: index.md
+        - Hardware: hardware.md
+        - Electronics: electronics.md
+        - Software: software.md
+    - Bonus:
+        - Circuit Diagram Draw.io Links: bonus/cd_links.md
+        - Flipsky VESC 4.12 Documentation: bonus/vesc_doc.md
 theme: 
     name: readthedocs
     highlightjs: true

@@ -1,6 +1,6 @@
 # Flipsky VESC 4.12 Documentation
 
-Credits: <https://github.com/Fasermaler/Misc-Notes/blob/master/Flipsky%20VESC%204.12%20Documentation.md>
+> Credits: <https://github.com/Fasermaler/Misc-Notes/blob/master/Flipsky%20VESC%204.12%20Documentation.md>
 
 This is a documentation for how to use and configure the flipSky FSESC 4.12 used on the MOMObot. The exact store page can be found [here](<https://flipsky.net/products/torque-esc-vesc-%C2%AE-bldc-electronic-speed-controller> ). 
 
@@ -52,7 +52,7 @@ Flipsky VESC 4.12 has a hardware version of 4.12 and a software version of 3.4. 
 
 ### Connections
 
-![06_be544658-0682-45ea-8461-9ecee8e482f2_2048x2048](assets/06_be544658-0682-45ea-8461-9ecee8e482f2_2048x2048.jpg)
+![06_be544658-0682-45ea-8461-9ecee8e482f2_2048x2048](../assets/06_be544658-0682-45ea-8461-9ecee8e482f2_2048x2048.jpg)
 
 
 
@@ -68,27 +68,27 @@ Some information was referenced from the [Motor Wizard Guide](<https://cdn.shopi
 
 2. The tool should look like this:
 
-   ![1555308556859](assets/1555308556859.png)
+   ![1555308556859](../assets/1555308556859.png)
 
 3. Plug in the one of the Flipsky VESCs to the computer via mini-USB cable. 
 
 4. Click on the connection icon in the top right corner.
 
-   - If prompted to update the software of the VESC, proceed to update![1555308548007](assets/1555308548007.png)
+   - If prompted to update the software of the VESC, proceed to update![1555308548007](../assets/1555308548007.png)
 
 5. Alternatively, click on the ```connection``` tab in the left menu and select ```Autoconnect```:
 
-   ![1555308539968](assets/1555308539968.png)
+   ![1555308539968](../assets/1555308539968.png)
 
 6. The VESC should now have a lit green LED. If there isn't a lit LED, check if the drive has been installed correctly or if the product is defective
 
 7. The motor setup wizard should appear, follow the steps accordingly
 
-   ![1555308527000](assets/1555308527000.png)
+   ![1555308527000](../assets/1555308527000.png)
 
 8. In our case, we will be selecting Field Oriented Control (FOC):
 
-   ![1555308503717](assets/1555308503717.png)
+   ![1555308503717](../assets/1555308503717.png)
 
 9. Under the motor setup wizard, enter the following parameters for the scooter motors used by the MOMObot:
 
@@ -107,7 +107,7 @@ Some information was referenced from the [Motor Wizard Guide](<https://cdn.shopi
 
 13. Proceed to the FOC settings wizard:
 
-    ![1555308490615](assets/1555308490615.png)
+    ![1555308490615](../assets/1555308490615.png)
 
     - Press the RL button, the motor will begin to vibrate
 
@@ -115,7 +115,7 @@ Some information was referenced from the [Motor Wizard Guide](<https://cdn.shopi
 
     - After all red boxes turn green (indicating that VESC has detected the motor parameters), click on ```apply``` to apply the motor values.
 
-      ![1555308481700](assets/1555308481700.png)
+      ![1555308481700](../assets/1555308481700.png)
 
 14. Under the Hall Sensor Detection wizard, ensure the motors can rotate freely
 
@@ -134,17 +134,17 @@ Next the app settings has to be configured accordingly. For MOMO control, we wil
 
 2. Configure the general app settings as follows:
 
-   ![1555308468557](assets/1555308468557.png)
+   ![1555308468557](../assets/1555308468557.png)
 
 3. Configure the PPM settings as follows:
 
-   ![Capture](assets/Capture.PNG)
+   ![Capture](../assets/Capture.PNG)
 
    -  Alternatively, using ROS / Teensy, send a neutral signal and monitor what PPM is being detected and use that as the center instead. Then apply the maximum forward and reverse and use those as the start and end values accordingly.
 
 4. Finally, set the Duty Settings as follows:
 
-   ![Capture2](assets/Capture2.PNG)
+   ![Capture2](../assets/Capture2.PNG)
 
 5. Remember to write the configuration to the VESC
 
