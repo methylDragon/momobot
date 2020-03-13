@@ -1,7 +1,9 @@
 # MOdular MObile (MOMObot) Robot Documentation
-
+> Version 1.1
 ## Credits
 This documentation has been put together with the combined efforts of members of the **SUTD Organisation of Autonomous Robotics**
+
+### V1.0: 2018 - 2019
 
 - [methylDragon](https://github.com/methylDragon)
 - [Shine16](https://github.com/shine16)
@@ -11,7 +13,13 @@ This documentation has been put together with the combined efforts of members of
 - Low En
 - [Senrli](https://github.com/senrli)
 
+### V1.1: 2019 - 2020
 
+- [Photon](https://github.com/1487quantum)
+- [robobdo](https://github.com/robobdo)
+- Jia Hwee
+- Jerremy
+- [darthnoward](https://github.com/darthnoward)
 
 ## Introduction
 
@@ -133,7 +141,7 @@ Take note:
 1. Redo Lidar Mount - side holder tolerance w
 2. Implement a guard for the front LiDAR
 3. Implement Rear LiDAR
-4. Implement system to improve ease of removing back panel (i.e. magnets, hooks), current back panel is screwed on by 6x rhombus nuts.
+4. Implement system to improve ease of removing back panel (i.e. magnets, hooks), current back panel is screwed on by 6x rhombus nuts. [In-progress]
 5. Implement a charging port for both 55Ah Batteries and 7Ah Batteries
 
 
@@ -302,24 +310,115 @@ Use the [Linorobot PID tuning guide](https://github.com/linorobot/linorobot/wiki
 
 MOMObot is using a modified [Linorobot]([https://linorobot.org](https://linorobot.org/)) stack! 
 
+## Overview
+- ROS Melodic Morenia
+- Ubuntu 18.04.3 LTS (Bionic Beaver)
+
 **Linorobot to Momobot stack changes:**
 
 1. Changed Linorobot to Momobot names in code
 2. Changed motor driver code
 3. Retargeted several packages
 
-
-
 ### 3.1 Pre-Requisites <a name="3.1"></a>
 [go to top](#top)
 
-
 - ROS Proficiency
 - Intermediate Linux/Ubuntu Command Line Proficiency
+- Python3 & C++ [Good to have]
 - Linorobot experience
     - https://linorobot.org
 
+#### pygame
+Ensure that pygame is installed before running *momo_emotions*.
+```shell
+$ sudo apt-get install python-pygame
+```
 
+#### kivy
+Add the kivy ppa, and then update the repo list:
+```
+$ sudo add-apt-repository ppa:kivy-team/kivy
+$ sudo apt update
+```
+After that, install kivy:
+```
+$ sudo apt-get install python3-kivy
+```
+**Troubleshooting**
+
+**SDL Issue**
+
+```
+[CRITICAL] [Window      ] Unable to find any valuable Window provider. Please enable debug logging (e.g. add -d if running from the command line, or change the log level in the config) and re-run your app to identify potential causes
+egl_rpi - ImportError: cannot import name 'bcm'
+  File "/usr/lib/python3/dist-packages/kivy/core/__init__.py", line 63, in core_select_lib
+    fromlist=[modulename], level=0)
+  File "/usr/lib/python3/dist-packages/kivy/core/window/window_egl_rpi.py", line 12, in <module>
+    from kivy.lib.vidcore_lite import bcm, egl
+
+sdl2 - ImportError: libSDL2_image-2.0.so.0: cannot open shared object file: No such file or directory
+  File "/usr/lib/python3/dist-packages/kivy/core/__init__.py", line 63, in core_select_lib
+    fromlist=[modulename], level=0)
+  File "/usr/lib/python3/dist-packages/kivy/core/window/window_sdl2.py", line 27, in <module>
+    from kivy.core.window._window_sdl2 import _WindowSDL2Storage
+
+x11 - ModuleNotFoundError: No module named 'kivy.core.window.window_x11'
+  File "/usr/lib/python3/dist-packages/kivy/core/__init__.py", line 63, in core_select_lib
+    fromlist=[modulename], level=0)
+
+[CRITICAL] [App         ] Unable to get a Window, abort.
+```
+The following issue is caused by a missing sdl2 library, could be resolved by installing the python3-sdl2 package:
+```
+$ sudo apt install python3-sdl2 
+```
+
+**D-Bus Issue (Jetson TX2)**
+
+If there are issues running programs that utillises the kivy lib as shown below:
+```
+[INFO   ] [Window      ] Provider: sdl2(['window_egl_rpi'] ignored)
+dbus[24434]: arguments to dbus_message_new_method_call() were incorrect, assertion "path != NULL" failed in file ../../../dbus/dbus-message.c line 1362.
+This is normally a bug in some application using the D-Bus library.
+
+  D-Bus not built with -rdynamic so unable to print a backtrace
+Aborted (core dumped)
+```
+Add _DBUS_FATAL_WARNINGS=0_ before the program name: ([Reference](https://bugs.launchpad.net/ubuntu/+source/libsdl2/+bug/1775067))
+```
+DBUS_FATAL_WARNINGS=0 {python_script}
+```
+Replace _python_script_ with the program name.
+
+#### ROS Pacakages
+Ensure that the relevant ROS pacakages are installed:
+- [Robot Localization](https://github.com/cra-ros-pkg/robot_localization): `$ sudo apt install ros-melodic-robot-localization`
+- [Ros Serial Python](http://wiki.ros.org/rosserial): `$ sudo apt install ros-melodic-rosserial-python`
+- [imu_filter_madgwick](http://wiki.ros.org/imu_filter_madgwick): `$ sudo apt install ros-melodic-imu-filter-madgwick`
+
+#### Teensy Configuration
+To access the Teensy, change the access permission of the Teensy via `chmod`:
+```
+$ sudo chmod 777 /dev/ttyACM0 
+```
+> Replace _/dev/ttyACM0_ to the device port of the Teensy accordingly! 
+
+To make it easier to identify teensy, we'll attach a symbolic link to the device name. We'll bind the teensy to a symbolic link (custom name) via udev (So instead of _/dev/ttyACM0_, it would be _/dev/momobase_). Double check the attributes of the device via 
+```
+$ udevadm info -a -p  $(udevadm info -q path -n /dev/ttyACM0)
+```
+Teensy could be identified via `ATTRS{manufacturer}=="Teensyduino"` in the list, **Note down the values of `ATTRS{idVendor}` and `ATTRS{idProduct}`.**
+
+After that, open up _/etc/udev/rules.d/99-nv-l4t-usb-device-mode.rules_ with a text editor.
+> **Note:** Double check the files in the _/etc/udev/rules.d/_ directory, the device rule file may differ for different devices/computer.
+```
+$ sudo nano /etc/udev/99-nv-l4t-usb-device-mode.rules 
+```
+Add the following line:
+```
+ACTION=="add", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="0483", SYMLINK+="momobase"
+```
 
 ### 3.2 Setting Up MOMObot <a name="3.2"></a>
 [go to top](#top)
@@ -333,8 +432,9 @@ These settings are for our internal use only. You might have to change it around
 
    ```
    ssh <USERNAME>@10.21.132.80 
-   
-   # Or
+   ```
+   Or
+   ```
    ssh momobot
    ```
 
@@ -403,15 +503,28 @@ To work with SUTD wifi for internet, use DNS Server: `192.168.2.100`
 > Otherwise you won't be able to get any ROS data!!!
 
 
+### **On MOMObot**
+1. Open up the your prefered shell config in a text editor
 
-#### **On MOMObot**
+**Bash (Default)**
 
-1. `sudo nano ~/.bashrc`
-2. Append this
-    - PLEASE REMEMBER TO CHANGE THE THINGS IN <>
-      Remember to save also!
-        ```shell
-        source /opt/ros/kinetic/setup.bash
+```
+$ sudo nano ~/.bashrc
+```
+**zsh**
+```
+$ sudo nano ~/.zshrc
+```
+
+2. Append the following in the shell configuration file:
+> **PLEASE REMEMBER TO CHANGE THE THINGS IN <> & Remember to save also!**
+
+**Bash (Default)**
+       
+```shell
+        ...
+        
+        source /opt/ros/melodic/setup.bash
         source ~/catkin_ws/devel/setup.bash
       
         source /home/<USERNAME>/<ROS_WORKSPACE_NAME>/devel/setup.bash
@@ -426,28 +539,46 @@ To work with SUTD wifi for internet, use DNS Server: `192.168.2.100`
       
         export ROS_IP=<IP ADDRESS OF ROBOT>
         export ROS_HOSTNAME=<IP ADDRESS OF ROBOT>
-        ```
+        
+```
+        
+**zsh**
 
+```shell
+        ...
+        
+        source /opt/ros/melodic/setup.zsh
+        source ~/catkin_ws/devel/setup.zsh
+      
+        source /home/<USERNAME>/<ROS_WORKSPACE_NAME>/devel/setup.zsh
+      
+        source ~/<ROS_WORKSPACE_NAME>/devel/setup.zsh
+        export LINOLIDAR=lms111
+        export LINOBASE=2wd
+      
+        export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/<USERNAME>/<ROS_WORKSPACE_NAME>/src
+      
+        alias costmap_reset="rosservice call /move_base/clear_costmaps"
+      
+        export ROS_IP=<IP ADDRESS OF ROBOT>
+        export ROS_HOSTNAME=<IP ADDRESS OF ROBOT>
+```
 
-
-#### **On Computer**
+### **On Computer**
 
 1. `sudo nano ~/.bashrc`
 2. Append this
     - PLEASE REMEMBER TO CHANGE THE THINGS IN <>
-        ```shell
+```shell
         ip=$(ip addr show wlo1 | grep -o 'inet [0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+' | grep -o [0-9].*)
         
         export ROS_MASTER_URI=http://<ROBOT_IP_ADDRESS>:11311
         export ROS_IP=$ip
         export ROS_HOSTNAME=$ip
-        ```
-
-
+```
 
 ### 3.3 Running MOMObot Capabilities <a name="3.3"></a>
 [go to top](#top)
-
 
 This section assumes knowledge of ROS and basic Linorobot packages.
 This is because MOMObot is based heavily on the Linorobot stack.

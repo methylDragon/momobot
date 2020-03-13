@@ -1,24 +1,15 @@
 # MOMObot
 
-
-
-
+> Version 1.1
 
 ![MOMO_logo_full](./assets/MOMO_logo_full.png)
 
 
-
-
-
 [![Click to watch video!](assets/youtube_thumbnail.png)](https://youtu.be/F5m3qasmmTs)
-
-
 
 **MOMObot** (MOdular MObile Robot) is a **ROS enabled autonomous ground vehicle for service** by the **SUTD Organisation of Autonomous Robotics**!
 
 Based off of the [Linorobot](https://linorobot.org) framework!
-
-
 
 **Features:**
 
@@ -27,14 +18,10 @@ Based off of the [Linorobot](https://linorobot.org) framework!
 - Expressive emotion module
 - Location based voice-lines
 
-
-
 ## Pre-Requisites
 
 - Same pre-requisites as the [Linorobot](https://linorobot.org)
 - We prefer to use [catkin tools](<https://catkin-tools.readthedocs.io/en/latest/installing.html>) as well!
-
-
 
 ## Setup
 
@@ -57,8 +44,6 @@ cd momobot_ws
 catkin build # Or catkin_make , if you don't have catkin tools installed
 source devel/setup.bash # Source the workspace
 ```
-
-
 
 ## Media
 
