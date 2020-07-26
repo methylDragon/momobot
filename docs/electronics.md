@@ -42,7 +42,12 @@ Two solid state relays were used
 -    1x CDG1-1DD/25A Solid State Relay
 -    Heat sinks
 -    1x E-stop
--    1x electronics On/Off Switch
+-    3x Rocker Switches (Red and Green)
+        - 
+-    1x Electronics box (E-box)
+-    1x Green LED
+-    1x Terminal Block (within the E-box)
+
 
 #### Connectors
 -    8x XT90 Connectors (Male and Female)
