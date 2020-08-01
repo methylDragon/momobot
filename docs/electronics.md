@@ -41,7 +41,7 @@ Two solid state relays were used
 -    2x CDG1-1DD/40A Solid State Relay
 -    1x CDG1-1DD/25A Solid State Relay
 -    Heat sinks
--    1x A22EM E-stop 
+-    1x A22E-M E-stop 
         - Application: Switch (Option, Others)	
         - Conforming series: φ22/ 25 switch, indicator light
         - Type: Operating unit (non-illuminated type)	
@@ -60,8 +60,7 @@ Two solid state relays were used
         - Enclosure types: Enclosure with 6 Ø22.5mm holes
         - Shell material:Plastic
         - IP grades:IP65
--    1x Green LED Pilot Light Panel Indicator
-        - Model No.: AD16-22D/S
+-    1x AD16-22D/S Green LED Pilot Light Panel Indicator
         - Voltage: 24V
         - Rated Current: 20mA
         - Material: Plastic, Electric Components
