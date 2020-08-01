@@ -41,11 +41,31 @@ Two solid state relays were used
 -    2x CDG1-1DD/40A Solid State Relay
 -    1x CDG1-1DD/25A Solid State Relay
 -    Heat sinks
--    1x E-stop
--    3x Rocker Switches (Red and Green)
-        - 
--    1x Electronics box (E-box)
--    1x Green LED
+-    1x A22EM E-stop 
+        - Application: Switch (Option, Others)	
+        - Conforming series: φ22/ 25 switch, indicator light
+        - Type: Operating unit (non-illuminated type)	
+        - Details of shape: Medium type (φ40)	
+        - Colour: Red
+        - Protection function: IP65 oil resistant type
+        - Push button operation: Push to lock/turn to reset
+        - Light Source Type: Non-Illumination
+        - Voltage Uses Light Source(V): Non-Illumination
+-    3x KR2-11 Rocker Switches (Red and Green)
+        - Type: On/Off, DPST
+        - Rating: 16A/125VAC, 10A/250VAC
+        - Mechanical life: 50,000 cycles
+        - Insulation: 500MΩ
+-    1x XK-A6/-Y Enclosure Electronics Box (E-box)
+        - Enclosure types: Enclosure with 6 Ø22.5mm holes
+        - Shell material:Plastic
+        - IP grades:IP65
+-    1x Green LED Pilot Light Panel Indicator
+        - Model No.: AD16-22D/S
+        - Voltage: 24V
+        - Rated Current: 20mA
+        - Material: Plastic, Electric Components
+        - Thread Diameter: 22mm / 0.87"
 -    1x Terminal Block (within the E-box)
 
 
@@ -134,7 +154,6 @@ VESC also has internal PID control which is not modified in the original MOMObot
 
 Read lots of guides for Duty settings - values that work
 After tuning the VESC's PPM and Duty Cycle settings, remember to write the settings else they will not be saved.
-
 
 
 Momo charges alot
