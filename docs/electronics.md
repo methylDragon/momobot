@@ -53,7 +53,7 @@ Two solid state relays were used
         - Voltage Uses Light Source(V): Non-Illumination
 -    3x KR2-11 Rocker Switches (Red and Green)
         - Type: On/Off, DPST
-        - Rating: 16A/125VAC, 10A/250VAC
+        - Rating: 10A/250VAC
         - Mechanical life: 50,000 cycles
         - Insulation: 500MΩ
 -    1x XK-A6/-Y Enclosure Electronics Box (E-box)
