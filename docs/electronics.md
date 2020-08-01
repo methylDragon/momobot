@@ -125,6 +125,7 @@ This assumes the batteries have been connected beforehand
 * 24V with smaller battery capacity and 24V with bigger battery capacity
 * Both 2 cells in series to boost the voltage for the motors, as well as the lidar
 
+![](https://github.com/SigmarusValkyrja/momobot/blob/master/assets/MOMObot%20Power%20Diagram.png)
 ![](https://i.imgur.com/2eP14wi.png)
 ![](https://i.imgur.com/bqXtxwv.png)
 ![](https://i.imgur.com/biKbPmZ.png)
