@@ -126,7 +126,7 @@ This assumes the batteries have been connected beforehand
 * Both 2 cells in series to boost the voltage for the motors, as well as the lidar
 
 ![](https://github.com/SigmarusValkyrja/momobot/blob/master/assets/MOMObot%20Power%20Diagram.png)
-![](https://i.imgur.com/2eP14wi.png)
+![](https://github.com/SigmarusValkyrja/momobot/blob/master/assets/Power%20Schematic%20Diagram.PNG)
 ![](https://i.imgur.com/bqXtxwv.png)
 ![](https://i.imgur.com/biKbPmZ.png)
 ![](https://i.imgur.com/jlg5EWP.png)
