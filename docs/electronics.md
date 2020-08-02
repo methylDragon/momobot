@@ -1,7 +1,7 @@
 ## Electronics
 
-Powers the controlling system, including the lidar, VESC, Teensy, laptop , router as well as two solid state relays
-Two solid state relays were used
+It powers the controlling system, including the lidar, VESC, Teensy, laptop , router as well as two solid state relays
+Two solid state relays were used.
 
 ### 2.1 Electronic BOM <a name="2.1"></a>
 [go to top](#top)
