@@ -1,7 +1,7 @@
 ## Electronics
 
-Powers the controlling system, including the lidar, VESC, Teensy, laptop , router as well as two solid state relays
-Two solid state relays were used
+It powers the controlling system, including the lidar, VESC, Teensy, laptop , router as well as two solid state relays
+Two solid state relays were used.
 
 ### 2.1 Electronic BOM <a name="2.1"></a>
 [go to top](#top)
@@ -41,8 +41,32 @@ Two solid state relays were used
 -    2x CDG1-1DD/40A Solid State Relay
 -    1x CDG1-1DD/25A Solid State Relay
 -    Heat sinks
--    1x E-stop
--    1x electronics On/Off Switch
+-    1x A22E-M E-stop 
+        - Application: Switch (Option, Others)	
+        - Conforming series: φ22/ 25 switch, indicator light
+        - Type: Operating unit (non-illuminated type)	
+        - Details of shape: Medium type (φ40)	
+        - Colour: Red
+        - Protection function: IP65 oil resistant type
+        - Push button operation: Push to lock/turn to reset
+        - Light Source Type: Non-Illumination
+        - Voltage Uses Light Source(V): Non-Illumination
+-    3x KR2-11 Rocker Switches (Red and Green)
+        - Type: On/Off, DPST
+        - Rating: 10A/250VAC
+        - Mechanical life: 50,000 cycles
+        - Insulation: 500MΩ
+-    1x XK-A6/-Y Enclosure Electronics Box (E-box)
+        - Enclosure types: Enclosure with 6 Ø22.5mm holes
+        - Shell material:Plastic
+        - IP grades:IP65
+-    1x AD16-22D/S Green LED Pilot Light Panel Indicator
+        - Voltage: 24V
+        - Rated Current: 20mA
+        - Material: Plastic, Electric Components
+        - Thread Diameter: 22mm / 0.87"
+-    1x Terminal Block (within the E-box)
+
 
 #### Connectors
 -    8x XT90 Connectors (Male and Female)
@@ -101,7 +125,8 @@ This assumes the batteries have been connected beforehand
 * 24V with smaller battery capacity and 24V with bigger battery capacity
 * Both 2 cells in series to boost the voltage for the motors, as well as the lidar
 
-![](https://i.imgur.com/2eP14wi.png)
+![](https://github.com/SigmarusValkyrja/momobot/blob/master/assets/MOMObot%20Power%20Diagram.png)
+![](https://github.com/SigmarusValkyrja/momobot/blob/master/assets/Power%20Schematic%20Diagram.PNG)
 ![](https://i.imgur.com/bqXtxwv.png)
 ![](https://i.imgur.com/biKbPmZ.png)
 ![](https://i.imgur.com/jlg5EWP.png)
@@ -129,7 +154,6 @@ VESC also has internal PID control which is not modified in the original MOMObot
 
 Read lots of guides for Duty settings - values that work
 After tuning the VESC's PPM and Duty Cycle settings, remember to write the settings else they will not be saved.
-
 
 
 Momo charges alot
