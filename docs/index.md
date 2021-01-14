@@ -19,7 +19,7 @@ This documentation has been put together with the combined efforts of members of
 
 - [Photon](https://github.com/1487quantum)
 - [robobdo](https://github.com/robobdo)
-- Jia Hwee
+- [Jia Hwee](https://github.com/SigmarusValkyrja)
 - Jerremy
 - [darthnoward](https://github.com/darthnoward)
 
